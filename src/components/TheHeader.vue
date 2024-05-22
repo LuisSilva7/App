@@ -5,12 +5,40 @@
       <h2>GoHelp</h2>
     </div>
     <div class="right-content">
-      <img src="@/assets/profile-image.svg" alt="profile">
+      <h5 @click="handleSignOut" class="sign-out-button">Logout</h5>
     </div>
   </header>
 </template>
 
+<script setup>
+    import { getAuth, signOut, onAuthStateChanged } from "firebase/auth"
+    import { useRouter } from 'vue-router'
+    import { onMounted, ref } from "vue"
 
+    const router = useRouter()
+    let isLoggedIn = ref(false)
+    let isCollaborator = ref(false)
+    let auth
+    let imageData = ''
+
+    onMounted(() => {
+    auth = getAuth()
+    onAuthStateChanged(auth, (user) => {
+      if(JSON.parse(localStorage.getItem('iniciatives')).some(iniciative => iniciative.email === user.email)) {
+        isLoggedIn.value = true
+      }
+      else {
+        isLoggedIn = false
+      }
+    })
+  })
+
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      router.push("/")
+    })
+  }
+</script>
 
 <style scoped>
 *{ 
@@ -57,5 +85,9 @@ h3{
   position: relative;
   width: 120px;
   height: 50px;
+}
+
+.sign-out-button {
+  cursor: pointer;
 }
 </style>

@@ -15,10 +15,21 @@
 import TheHeader from '../components/TheHeader.vue'
 import Tittle from '../components/Tittle.vue'
 import IniciativeFrame from '../components/IniciativeFrame.vue'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
+  props: ['ini'],
   components: { TheHeader, Tittle, IniciativeFrame},
-
+  data() {
+    return {
+      iniciatives: [],
+      iniciativesNumber: 0
+    }
+  },
+  created() {
+    this.iniciatives = JSON.parse(this.$route.query.ini)
+    this.iniciativesNumber = JSON.parse(this.$route.query.ini).length
+  }
 }
 </script>
 

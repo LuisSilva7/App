@@ -1,17 +1,18 @@
 <template>
   <div class="quadrado">
     <div class="conteudo-imagem">
-      <img id="img" src="@/assets/gym-class-image.png" alt="Imagem">
+      <img v-if="iniciative.photo === ''" src="@/assets/default-image.png" height="200px" width="200px" alt="Foto da Iniciativa">
+      <img v-else :src="iniciative.photo" height="80px" width="80px" alt="Foto da Iniciativa">
     </div>
     <div class="informacoes">
       <div class="date">
-        <h4 id="month">{{ iniciative.mes }}</h4>
-        <h5 id="day">{{ iniciative.dia }}</h5>
+        <h4 id="month">{{ month }}</h4>
+        <h5 id="day">{{ day }}</h5>
       </div>
       <div class="texto">
-        <h5 id="titulo">{{ iniciative.nome }}</h5> <!-- titulo-->
-        <p id="local">Local: {{ iniciative.local }}</p> <!-- Local do evento-->
-        <p id="numero">Nº de participantes: {{ iniciative.participantes }}</p>
+        <h5 id="titulo">{{ iniciative.theme }}</h5>
+        <p id="local">Local: {{ iniciative.local }}</p>
+        <p id="numero">Nº minímo de participantes: {{ iniciative.minParticipants }}</p>
       </div>
       <button @click="redirect" class="botao">Iniciar</button>
     </div>
@@ -21,10 +22,56 @@
 <script>
 export default {
   props: ['iniciative'],
+  data() {
+    return {
+      month: '',
+      day: ''
+    }
+  },
   methods: {
       redirect() {
-          this.$router.push({ name: 'CheckIn', params: { id: this.iniciative.id }})
+        this.$router.push({ name: 'CheckIn', query: { iniciative: JSON.stringify(this.iniciative) } })
       }
+  },
+  created() {
+    var partes = this.iniciative.date.split("-")
+    if(partes[1] === '01') {
+      this.month = 'Jan'
+    }
+    if(partes[1] === '02') {
+      this.month = 'Fev'
+    }
+    if(partes[1] === '03') {
+      this.month = 'Mar'
+    }
+    if(partes[1] === '04') {
+      this.month = 'Abr'
+    }
+    if(partes[1] === '05') {
+      this.month = 'Mai'
+    }
+    if(partes[1] === '06') {
+      this.month = 'Jun'
+    }
+    if(partes[1] === '07') {
+      this.month = 'Jul'
+    }
+    if(partes[1] === '08') {
+      this.month = 'Ago'
+    }
+    if(partes[1] === '09') {
+      this.month = 'Set'
+    }
+    if(partes[1] === '10') {
+      this.month = 'Out'
+    }
+    if(partes[1] === '11') {
+      this.month = 'Nov'
+    }
+    if(partes[1] === '12') {
+      this.month = 'Dez'
+    }
+    this.day = partes[2];
   }
 }
 </script>

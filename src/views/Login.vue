@@ -21,18 +21,24 @@
       signInWithPopup(getAuth(), provider)
       .then((result) => {
           console.log(result.user)
-          router.push("/iniciatives")
-          //location.reload()
+          if(JSON.parse(localStorage.getItem('iniciatives')).some(iniciative => iniciative.email === result.user.email)) {
+            var iniciatives = JSON.parse(localStorage.getItem('iniciatives')).filter(iniciative => iniciative.email === result.user.email)
+            router.push({ name: 'Iniciatives', query: { ini: JSON.stringify(iniciatives) } })
+          }
+          else {
+            alert("O email inserido não se encontra associado a nenhuma iniciativa. Tente novamente!")
+          }
       })
       .catch((error) => {
           console.log("erro")
+          console.log(error)
       })
   }
 
   onMounted(() => {
   auth = getAuth()
   onAuthStateChanged(auth, (user) => {
-    if(user && JSON.parse(localStorage.getItem('iniciatives')).some(iniciative => iniciative.email === user.email)) {
+    if(user) {
       isLoggedIn.value = true
     }
     else {

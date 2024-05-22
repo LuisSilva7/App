@@ -17,31 +17,32 @@ const routes = [
     path: '/iniciatives',
     name: 'Iniciatives',
     component: Iniciatives,
+    props: true,
     meta: { requiresAuth: true }
   },
   {
-    path: '/checkIn/:id',
+    path: '/checkIn',
     name: 'CheckIn',
     component: CheckIn,
     props: true,
     meta: { requiresAuth: true }
   },
   {
-    path: '/duringIniciative/:id',
+    path: '/duringIniciative/:theme',
     name: 'DuringIniciative',
     component: DuringIniciative,
     props: true,
     meta: { requiresAuth: true }
   },
   {
-    path: '/checkOut/:id',
+    path: '/checkOut/:theme',
     name: 'CheckOut',
     component: CheckOut,
     props: true,
     meta: { requiresAuth: true }
   },
   {
-    path: '/statistics/:id',
+    path: '/statistics/:theme',
     name: 'Statistics',
     component: Statistics,
     props: true,

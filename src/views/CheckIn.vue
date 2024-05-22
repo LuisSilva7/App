@@ -9,20 +9,20 @@
   <div class="box">
 
   <div class="containerColaborador">
-    <div v-for="trabalhador in trabalhadores" :key="trabalhador.nome" >
-      <CheckInOutBox :nome="trabalhador.nome" :papel="trabalhador.papel" check="CheckIn" class="checkinout-box"/>
+    <div v-for="collaborator in collaborators" :key="collaborator.name" >
+      <CheckInOutBox :nome="collaborator.name" papel="Colaborador" check="CheckIn" class="checkinout-box"/>
   </div>
  </div>
   <div class="containerMateriais">
-    <div v-for="material in materiais" :key="material.nome">
-      <CheckInOutBox :nome="material.nome" :papel="material.papel" check="CheckIn" class="checkinout-box"/>
+    <div v-for="material in materiais" :key="material.name">
+      <CheckInOutBox :nome="collaborator.name" papel="Colaborador" check="CheckIn" class="checkinout-box"/>
     </div>
   </div>
  </div>
 
 <div class="button-container">
   <ButtonGoBack />
-  <ButtonGoFoward :id="id" redirectPage="DuringIniciative"/>
+  <ButtonGoFoward :theme="theme" redirectPage="DuringIniciative"/>
 </div>
 </template>
 
@@ -35,20 +35,19 @@ import CheckInOutBox from '../components/CheckInOutBox.vue'
 
 export default {
   components: { TheHeader, Tittle, ButtonGoBack, ButtonGoFoward, CheckInOutBox },
-  props: ['id'],
+  props: ['theme'],
   data() {
         return {
           tittle: 'Gestão de Evento',
-          trabalhadores: [],
-          materiais: []
+          collaborators: [],
+          materials: []
         }
   },
-  mounted() {
-    if (localStorage.getItem('iniciatives')) {
-      const iniciativas = JSON.parse(localStorage.getItem('iniciatives'))
-      this.trabalhadores = iniciativas[this.id].trabalhadores
-      this.materiais = iniciativas[this.id].materiais
-    }
+  created() {
+    console.log(JSON.parse(this.$route.query.iniciative).collaborators)
+    this.collaborators = JSON.parse(this.$route.query.iniciative).collaborators
+    this.materials = JSON.parse(this.$route.query.iniciative).materials
+    //FAZER OS PROFISSIONAIS
   }
 }
 </script>

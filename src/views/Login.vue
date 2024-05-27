@@ -22,8 +22,7 @@
       .then((result) => {
           console.log(result.user)
           if(JSON.parse(localStorage.getItem('iniciatives')).some(iniciative => iniciative.email === result.user.email)) {
-            var iniciatives = JSON.parse(localStorage.getItem('iniciatives')).filter(iniciative => iniciative.email === result.user.email)
-            router.push({ name: 'Iniciatives', query: { ini: JSON.stringify(iniciatives) } })
+            router.push({ name: 'Iniciatives', params: { email: result.user.email } })
           }
           else {
             alert("O email inserido não se encontra associado a nenhuma iniciativa. Tente novamente!")

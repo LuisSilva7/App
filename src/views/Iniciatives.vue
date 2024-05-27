@@ -1,7 +1,9 @@
 <template>
   <TheHeader />
   <Tittle :tittle="tittle"/>
-  <h3>{{ iniciativesNumber }}</h3>
+  <div class="mini-container">
+    <h3>{{ iniciativesNumber }}</h3>
+  </div>
   <div class="container">
     <div class="scroll-container">
       <div v-for="iniciative in iniciatives" :key="iniciative.id">
@@ -15,31 +17,35 @@
 import TheHeader from '../components/TheHeader.vue'
 import Tittle from '../components/Tittle.vue'
 import IniciativeFrame from '../components/IniciativeFrame.vue'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
-  props: ['ini'],
   components: { TheHeader, Tittle, IniciativeFrame},
   data() {
     return {
+      tittle: 'Minhas Iniciativas',
       iniciatives: [],
       iniciativesNumber: 0
     }
   },
   created() {
-    this.iniciatives = JSON.parse(this.$route.query.ini)
-    this.iniciativesNumber = JSON.parse(this.$route.query.ini).length
+    this.iniciatives = JSON.parse(localStorage.getItem('iniciatives')).filter(iniciative => (iniciative.email === this.$route.params.email) && (iniciative.status === 'aceite'))
+    this.iniciativesNumber = this.iniciatives.length
   }
 }
 </script>
 
 <style scoped>
+
+.mini-container{
+  width: 100%;
+  padding-left: 45%;
+}
+
 h3 {
   text-align: center;
   align-items: center;
-  margin-left: 47%;
   background: url("@/assets/background-header-image.jpeg");
-  width: 6%;
+  width: 8vh;
   padding: 7px 0;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;

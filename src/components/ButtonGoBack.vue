@@ -1,5 +1,5 @@
 <template>
-    <button @click="back" class="button">Anterior</button>
+    <button @click="back" class="button"><p>Anterior</p></button>
   </template>
   
   <script>
@@ -15,8 +15,8 @@
 <style scoped>
 .button {
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 20px;
+  padding: 1px 10px;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
@@ -27,7 +27,13 @@
   color: #830a0a;
   transition: background-color 0.3s ease;
   border: 1px solid black;
+  height: fit-content;
 }
+
+.button p{
+  margin: 5px;
+}
+
 .button:hover {
   background-color: #bcc2c7;
 }

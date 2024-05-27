@@ -21,6 +21,6 @@ hr{
   max-width: 90%;
   margin: 0 auto;
   margin-top: 1%;
-  border-top: 2px solid;
+  border-top: 1px solid;
 }
 </style>

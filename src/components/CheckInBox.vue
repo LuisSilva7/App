@@ -1,18 +1,28 @@
 <template>
-  <div class="container">
+  <div v-if="!check" class="container">
     <div class="nome">
         <p>{{nome}}</p></div>
     
     <div class="profissao">
         <p>{{papel}}</p></div>
     <div class="divisoria"></div>
-    <div class="checkin"><p>{{check}}</p></div>
+    <div @click="checked" class="checkin"><p>CheckIn</p></div>
   </div> 
 </template>
 
 <script>
 export default {
   props: ['nome' , 'papel', 'check'],
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    checked() {
+      this.$emit('checked', this.nome, this.papel)
+    }
+  }
 }
 </script>
 
@@ -25,6 +35,11 @@ p{
   display: flex;
   margin-top: 10%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+}
+
+.nome{
+  overflow: hidden;
 }
 
 .container {
@@ -60,7 +75,6 @@ p{
 }
 
 .checkin{
-
   height: 100%;
   width: 100%;
   display: flex;
@@ -70,8 +84,9 @@ p{
   background: url("@/assets/background-header-image.jpeg");
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  
+  cursor: pointer;
 }
+
 .divisoria {
   width: 3%; /* Largura da divisória */
   background-color: #fff; /* Cor de fundo branca */

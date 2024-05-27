@@ -14,14 +14,14 @@ const routes = [
     component: Login
   },
   {
-    path: '/iniciatives',
+    path: '/iniciatives/:email',
     name: 'Iniciatives',
     component: Iniciatives,
     props: true,
     meta: { requiresAuth: true }
   },
   {
-    path: '/checkIn',
+    path: '/checkIn/:theme',
     name: 'CheckIn',
     component: CheckIn,
     props: true,

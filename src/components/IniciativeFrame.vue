@@ -1,18 +1,24 @@
 <template>
   <div class="quadrado">
-    <div class="conteudo-imagem">
-      <img v-if="iniciative.photo === ''" src="@/assets/default-image.png" height="200px" width="200px" alt="Foto da Iniciativa">
-      <img v-else :src="iniciative.photo" height="80px" width="80px" alt="Foto da Iniciativa">
+    <div class="row row-cols-2">
+      <div class="col-6">
+        <div class="conteudo-imagem">
+          <img v-if="iniciative.photo === ''" src="@/assets/default-image.png" height="200px" width="200px" alt="Foto da Iniciativa">
+          <img v-else :src="imageUrl" height="80px" width="80px" alt="Foto da Iniciativa">
+        </div>
+      </div>
+      <div class="col-4" style="width: fit-content; height: fit-content;">
+        <div class="date">
+          <h1 id="month">{{ month }}</h1>
+          <h3 id="day">{{ day }}</h3>
+        </div>
+      </div>
     </div>
     <div class="informacoes">
-      <div class="date">
-        <h4 id="month">{{ month }}</h4>
-        <h5 id="day">{{ day }}</h5>
-      </div>
       <div class="texto">
         <h5 id="titulo">{{ iniciative.theme }}</h5>
-        <p id="local">Local: {{ iniciative.local }}</p>
         <p id="numero">Nº minímo de participantes: {{ iniciative.minParticipants }}</p>
+        <p id="local">Local: {{ iniciative.local }}</p>
       </div>
       <button @click="redirect" class="botao">Iniciar</button>
     </div>
@@ -20,17 +26,20 @@
 </template>
 
 <script>
+import { getStorage, ref as storageRef, getDownloadURL  } from 'firebase/storage'
+
 export default {
   props: ['iniciative'],
   data() {
     return {
       month: '',
-      day: ''
+      day: '',
+      imageUrl: ''
     }
   },
   methods: {
       redirect() {
-        this.$router.push({ name: 'CheckIn', query: { iniciative: JSON.stringify(this.iniciative) } })
+        this.$router.push({ name: 'CheckIn', params: { theme: this.iniciative.theme } })
       }
   },
   created() {
@@ -71,7 +80,33 @@ export default {
     if(partes[1] === '12') {
       this.month = 'Dez'
     }
-    this.day = partes[2];
+    this.day = partes[2]
+
+    const storage = getStorage()
+
+          if (this.iniciative.photo) {
+            const imageRef = storageRef(storage, 'images/' + this.iniciative.photo)
+            getDownloadURL(imageRef)
+            .then((url) => {
+              console.log('URL da imagem obtida:', url);
+              this.imageUrl = url // Retorna a URL da imagem
+            })
+            .catch((error) => {
+              console.error('Erro ao obter URL da imagem:', error)
+              throw error; // Lança o erro para ser tratado pelo chamador
+            })
+          } else {
+            const imageRef = storageRef(storage, 'images/' + 'defaultImage.png')
+            getDownloadURL(imageRef)
+            .then((url) => {
+              console.log('URL da imagem obtida:', url);
+              this.imageUrl = url // Retorna a URL da imagem
+            })
+            .catch((error) => {
+              console.error('Erro ao obter URL da imagem:', error)
+              throw error; // Lança o erro para ser tratado pelo chamador
+            })
+          }
   }
 }
 </script>
@@ -81,29 +116,28 @@ export default {
 .quadrado {
 margin-top: 60px;
 position: relative;
-width: 375px; /* Largura do quadrado */
+width: 300px; /* Largura do quadrado */
 height: 325px; /* Altura do quadrado */
 background-color: #f0f0f0; /* Cor de fundo do quadrado */
 border-radius: 30px; /* Borda arredondada */
 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 overflow: hidden; /* Para esconder partes da imagem que saem do quadrado */
-
 }
 
 .conteudo-imagem {
 position: relative;
 width: 100%;
 height: 100%; 
-overflow: hidden;
 margin-bottom: 0;
 }
 
-#img {
+.conteudo-imagem img{
   display: block; /* Garante que a imagem seja exibida como bloco */
-  width: 100%; /* Garante que a imagem não ultrapasse a largura do quadrado */
-  height: 50%; /* Garante que a imagem não ultrapasse a altura do quadrado */
+  width: 162.5px; /* Garante que a imagem não ultrapasse a largura do quadrado */
+  height: 162.5px; /* Garante que a imagem não ultrapasse a altura do quadrado */
   margin: auto; 
   overflow: hidden;
+  object-fit: fill;
 }
 
 .informacoes {
@@ -114,50 +148,55 @@ left: 0;
 width: 100%;
 height: 50%;
 text-align: center;
-padding-top:20px;
-padding-left:20px;
 display: flex;
 flex-flow: row nowrap;
 justify-content:left;
 }
 
 .date {
-padding: 0 10px 10px 10px; /* Aqui dá para mexer para centrar no container*/ 
+padding: 47px 10px 10px 10px; /* Aqui dá para mexer para centrar no container*/ 
 height: 100%;
 display: flex;
 flex-flow: column nowrap;
+text-align: center;
+margin-left: 5vh;
 }
 
 #month {
 margin-bottom: 0;
-text-align:justify;
 color: crimson;
+font-size: 35px;
 }
 
 #day {
 color: black;
+font-size: 30px;
 }
 
 .texto {
 padding-left: 10px;
-padding-top: 3px;
+padding-top: 10px;
 flex-grow:5;
 text-align: left;
 }
 
 #titulo {
-margin-bottom: 5px;
+margin-bottom: 9px;
 font-weight: bold;
+font-size: 17px;
 color:black;
+text-align: left;
 }
 
 #local {
-margin-bottom: 3px;
 color:black;
+font-size: 14px;
 }
 
 #numero {
 color:black;
+font-size: 14px;
+margin-bottom: 3px;
 }
 
 .botao {

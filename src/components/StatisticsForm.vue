@@ -20,7 +20,7 @@
       <div class="esferas">
           <div v-if="iniciative.successRate === 0">
             <div class="txt_field">
-              <label for="companyField">Nível de Sucesso Esperado</label>
+              <label for="companyField">Nível de Sucesso</label>
             </div>
             <div class="esferas-container">
               <div @click="esferasHandler(20)" class="esferaBranca"></div>
@@ -32,7 +32,7 @@
           </div>
           <div v-else-if="iniciative.successRate === 20">
             <div class="txt_field">
-              <label for="companyField">Nível de Sucesso Esperado</label>
+              <label for="companyField">Nível de Sucesso</label>
             </div>
             <div class="esferas-container">
               <div @click="esferasHandler(20)" class="esferaVerde"></div>
@@ -44,7 +44,7 @@
           </div>
           <div v-else-if="iniciative.successRate === 40">
             <div class="txt_field">
-              <label for="companyField">Nível de Sucesso Esperado</label>
+              <label for="companyField">Nível de Sucesso</label>
             </div>
             <div class="esferas-container">
               <div @click="esferasHandler(20)" class="esferaVerde"></div>
@@ -56,7 +56,7 @@
           </div>
           <div v-else-if="iniciative.successRate === 60">
             <div class="txt_field">
-              <label for="companyField">Nível de Sucesso Esperado</label>
+              <label for="companyField">Nível de Sucesso</label>
             </div>
             <div class="esferas-container">
               <div @click="esferasHandler(20)" class="esferaVerde"></div>
@@ -68,7 +68,7 @@
           </div>
           <div v-else-if="iniciative.successRate === 80">
             <div class="txt_field">
-              <label for="companyField">Nível de Sucesso Esperado</label>
+              <label for="companyField">Nível de Sucesso</label>
             </div>
             <div class="esferas-container">
               <div @click="esferasHandler(20)" class="esferaVerde"></div>
@@ -80,7 +80,7 @@
           </div>
           <div v-else>
             <div class="txt_field">
-              <label for="companyField">Nível de Sucesso Esperado</label>
+              <label for="companyField">Nível de Sucesso</label>
             </div>
             <div class="esferas-container">
               <div @click="esferasHandler(20)" class="esferaVerde"></div>

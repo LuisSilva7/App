@@ -18,7 +18,7 @@
                         <label>Custos da Iniciativa:</label>
                     </div>
       <div class="esferas">
-          <div v-if="iniciative.successRate === 0">
+          <div v-if="iniciative.successRate === 0" style="max-height: 25px;">
             <div class="txt_field">
               <label for="companyField">Nível de Sucesso</label>
             </div>
@@ -30,7 +30,7 @@
               <div @click="esferasHandler(100)" class="esferaBranca"></div>
             </div>
           </div>
-          <div v-else-if="iniciative.successRate === 20">
+          <div v-else-if="iniciative.successRate === 20" style="max-height: 25px;">
             <div class="txt_field">
               <label for="companyField">Nível de Sucesso</label>
             </div>
@@ -42,7 +42,7 @@
               <div @click="esferasHandler(100)" class="esferaBranca"></div>
             </div>
           </div>
-          <div v-else-if="iniciative.successRate === 40">
+          <div v-else-if="iniciative.successRate === 40" style="max-height: 25px;">
             <div class="txt_field">
               <label for="companyField">Nível de Sucesso</label>
             </div>
@@ -54,7 +54,7 @@
               <div @click="esferasHandler(100)" class="esferaBranca"></div>
             </div>
           </div>
-          <div v-else-if="iniciative.successRate === 60">
+          <div v-else-if="iniciative.successRate === 60" style="max-height: 25px;">
             <div class="txt_field">
               <label for="companyField">Nível de Sucesso</label>
             </div>
@@ -66,7 +66,7 @@
               <div @click="esferasHandler(100)" class="esferaBranca"></div>
             </div>
           </div>
-          <div v-else-if="iniciative.successRate === 80">
+          <div v-else-if="iniciative.successRate === 80" style="max-height: 25px;">
             <div class="txt_field">
               <label for="companyField">Nível de Sucesso</label>
             </div>
@@ -78,7 +78,7 @@
               <div @click="esferasHandler(100)" class="esferaBranca"></div>
             </div>
           </div>
-          <div v-else>
+          <div v-else style="max-height: 25px;">
             <div class="txt_field">
               <label for="companyField">Nível de Sucesso</label>
             </div>
@@ -144,6 +144,7 @@ form{
 
 .center form{
   max-width: 420px;
+  max-height: 400.31px;
   text-align: left;
   padding: 20px;
   border-radius: 30px;
@@ -153,19 +154,23 @@ form{
 form .txt_field{
 position: relative;
 border-bottom: 2px solid #adadad;
-margin: 30px 0;
+margin: 25px 0;
 }
 
 .esferas .txt_field{ 
-  margin-left: 5vh;
+  margin-left: 11vh;
   border:none;
   text-align: center;
   border-bottom: 1px solid transparent;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 .esferas-container{
   text-align: center;
+  justify-content: center;
   padding-bottom: 4px;
+  padding-left: 3vh;
 }
 
 body{
@@ -174,11 +179,13 @@ padding: 0;
 font-family: montserrat;
 height:100vh;
 overflow: hidden;
+text-align: center;
 }
 
 .esferas-container {
   display: flex;
   justify-content: center;
+  height:fit-content ;
 }
 
 .esferaBranca {
@@ -225,7 +232,7 @@ label {
 }
 
 .last-btn{
-  margin-top: 3vh;
+  margin-top: 6vh;
   text-align: center;
 }
 
@@ -238,7 +245,7 @@ input {
     color: #c6c6c6;
     padding: 0 5px;
     width: 100%;
-    height: 40px;
+    height: 30px;
     font-size: 16px;
     border: none;
     background:none;

@@ -4,13 +4,15 @@
       <input v-model="newText" placeholder="Insira o seu comentário aqui..." />
       <button @click="addText">Adicionar</button>
     </div>
-    <div class="retangulo2">
+    
+      <div class="retangulo2">
       <div v-for="(text, index) in iniciative.duringIniciativeTexts" :key="index" class="trabalhador">
         <div class="textarea">
           {{ text }}
         </div>
       </div>
     </div>
+  
   </div>
 </template>
 
@@ -84,13 +86,13 @@ color:white;
 }
 
 .retangulo2 {
-  width: 40%; /* largura fixa do retângulo2 */
-  height: 100%; /* altura igual à do retângulo1 */
-  overflow-x: auto; /* habilita a rolagem horizontal */
-  overflow-y: hidden; /* esconde a barra de rolagem vertical */
+  width: 40%; 
+  height: 100%;
+  overflow-x: auto; 
+  overflow-y: hidden;
   display: flex;
   align-items: center;
-  white-space: nowrap; /* impede a quebra de linha dos elementos */
+  white-space: nowrap; 
 }
 
 .trabalhador {

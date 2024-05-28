@@ -111,6 +111,7 @@ export default {
 .page{
   overflow:unset;
 }
+
 .sub-titulo{
   text-align: center;
   padding: auto 40%;
@@ -132,12 +133,14 @@ p {
 .check-boxes{
   min-width: none;
   min-height: 200px;
-  padding:0 10px;
+  padding-right: 0;
   max-height: 200px;
+  max-width: 375px;
   justify-content: center; /* Centers items horizontally */
   align-items: center;   
   overflow-x: hidden; /* Hides horizontal overflow */
   overflow-y: auto; /* Adds vertical scrollbar when content overflows */
+  overflow:visible;
 }
 
 .checkinout-box{
@@ -178,11 +181,14 @@ hr{
 
 .check-boxes.dois{
   width: 100%;
+  padding-right: 0;
   padding-bottom: 15px;
-  overflow: hidden;
+  overflow:visible;
+  max-width: 375px;
+
 }
 
-/**Daqui para baixo nao fiz a nao ser butoes */
+
 .box {
   display: flex;
   flex-direction: row;

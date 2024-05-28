@@ -121,11 +121,11 @@ h4 {
 
 .button-container {
   position: fixed;
-  
+  bottom: 20px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
-  box-sizing: border-box;
+  padding: 10px 30px;
+  box-sizing: border-box; 
 }
 </style>

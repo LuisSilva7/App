@@ -1,16 +1,18 @@
 <template>
-  <TheHeader />
+  <div class="page">
+    <TheHeader />
   <Tittle :tittle="tittle"/>
   <div class="title">
     <h3>Estatísticas</h3>
   </div>
   <div class="corpo">
-    <StatisticsForm :theme="iniciative.theme"/>
+      <StatisticsForm :theme="iniciative.theme"/>
   </div>
   <div class="rodape">
     <div class="button-container" >
       <ButtonGoBack />
     </div>
+  </div>
   </div>
 </template>
 
@@ -35,6 +37,11 @@ export default {
 </script>
 
 <style scoped>
+
+page{
+  max-width: 90%;
+  max-height: 90%;
+}
 
 .title{
   width: 100%;

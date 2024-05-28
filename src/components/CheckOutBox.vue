@@ -40,6 +40,10 @@
 
 .nome{
   overflow: hidden;
+  word-wrap: break-word; /* Permite que o texto quebre a linha */
+            overflow-wrap: break-word; /* Compatível com mais navegadores */
+            white-space: normal; /* Garante que o texto respeite as quebras de linha */
+        
 }
 
 .container {

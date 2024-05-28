@@ -40,6 +40,7 @@ p{
 
 .nome{
   overflow: hidden;
+  text-align: center;
 }
 
 .container {
@@ -63,6 +64,10 @@ p{
   justify-content: center; /* Centraliza conteúdo horizontalmente */
   align-items: center; /* Centraliza conteúdo verticalmente */
   font-size: 16px; /* Tamanho da fonte */
+  word-wrap: break-word; /* Permite que o texto quebre a linha */
+            overflow-wrap: break-word; /* Compatível com mais navegadores */
+            white-space: normal; /* Garante que o texto respeite as quebras de linha */
+        
 }
 
 .profissao {
